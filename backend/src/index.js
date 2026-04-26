@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.route.js";
 import dotenv from "dotenv";
+import { connectDB } from "./lib/db.js";
 
 
 const app = express()
@@ -20,4 +21,5 @@ app.use("/api/auth",authRoutes)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
+  connectDB();
 })
