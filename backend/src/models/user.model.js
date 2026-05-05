@@ -16,6 +16,14 @@ const userSchema = new mongoose.Schema(
             required:true,
             minlength:6,
         },
+        salery:{
+            type:Number
+        },
+        role:{
+            type:String,
+            enum:["admin","employee"],
+            required:true
+        }
 },
         {timestamps:true},
 );
