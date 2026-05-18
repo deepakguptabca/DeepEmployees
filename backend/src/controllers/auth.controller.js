@@ -3,9 +3,9 @@ import User from "../models/user.model.js"
 import bcrypt from "bcryptjs"
 
 export const signup = async (req,res) =>{
-    const {fullName,email,password} = req.body;
+    const {fullName,email,password,role,salary} = req.body;
     try {
-        if(!email || !fullName || !password) return res.status(400).json({message:"fill your all details"})
+        if(!email || !fullName || !password || !role) return res.status(400).json({message:"fill your all details"})
 
         if(password.length<6){
             return res.status(400).json({message:"password must be atleast 6 characters"})
@@ -21,7 +21,9 @@ export const signup = async (req,res) =>{
         const newUser = new User({
             fullName,
             email,
-            password:hashedPassword
+            password:hashedPassword,
+            role,
+            salary
         })
 
         if(newUser) {

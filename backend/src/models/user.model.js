@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
             required:true,
             minlength:6,
         },
-        salery:{
+        salary:{
             type:Number
         },
         role:{
