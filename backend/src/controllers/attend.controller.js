@@ -75,13 +75,55 @@ export const deleteAttendance = async (req,res) =>{
       date
     })
 
-    if(!existing) return res.status(400).json({})
-
+    
+    if(!existing) return res.status(400).json({message:"attendance not found"})
+      
+    await existing.deleteOne();
+    res.status(200).json({message:"attendance deleted successfully"})
 
 
   } catch (error) {
-    
+    console.log("error in delete attendance api :" , error);
+    res.status(400).json({message:"internal server error"})
   }
 
 
+}
+
+export const getAttendanceForMonth = async (req,res) =>{
+  const {userId,month,year} = req.body;
+
+  try {
+
+    const startDate = new Date(year,month-1,1);
+    startDate.setTime(0,0,0,0);
+
+    const endDate = new Date(year,month,0);
+    endDate.setHours(23,59,59,999)
+
+    const attendance = await Attendance.find({
+      userId,
+
+      date : {
+        $gte : startDate,
+        $lte : endDate,
+      },
+    }).sort({date:1});
+
+    res.status(200).json({
+      success:true,
+      attendance,
+    })
+    
+  } catch (error) {
+    console.log(
+      "error in getAttendanceForMonthOfEmployee controller",
+      error.message
+    );
+
+    res.status(500).json({
+      success: false,
+      message: "internal server error",
+    });
+  }
 }
