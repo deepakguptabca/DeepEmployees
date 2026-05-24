@@ -4,8 +4,12 @@ import {Routes,Route} from "react-router-dom";
 import HomePage from './components/pages/HomePage';
 import SignUpPage from './components/pages/SignUpPage';
 import LoginPage from './components/pages/LoginPage';
+import { useAuthStore } from './store/useAuthStore';
 
 const App = () => {
+
+  const {authUser} = useAuthStore();
+
   return (
     <div>
       <Navbar/>
