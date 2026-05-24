@@ -7,6 +7,6 @@ const router = express.Router();
 router.post("/markAttendance",protectRoute,markAttendance);
 router.post("/updateAttendance",protectRoute,updateAttendance);
 router.post("/deleteAttendance",protectRoute,deleteAttendance);
-router.post("/getMonthData", protectRoute,getAttendanceForMonth)
+router.post("/getMonthData", protectRoute,getAttendanceForMonth);
 
 export default router;

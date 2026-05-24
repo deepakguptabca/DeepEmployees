@@ -69,6 +69,8 @@ export const updateAttendance = async (req,res) =>{
 export const deleteAttendance = async (req,res) =>{
   const {userId,date} = req.body;
 
+  if(!userId || !date) return res.status(400).json({message:"Provide userId and Date"})
+
   try {
     const existing = await Attendance.findOne({
       userId,
@@ -92,6 +94,8 @@ export const deleteAttendance = async (req,res) =>{
 
 export const getAttendanceForMonth = async (req,res) =>{
   const {userId,month,year} = req.body;
+
+  if(!userId || !month || !year) return res.status(400).json({message : "provide userId ,month and year"});
 
   try {
 
