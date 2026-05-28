@@ -82,8 +82,17 @@ export const logout = (req,res) =>{
         res.status(200).json({message:"loggout successfully"})
     } catch (error) {
         console.log("error in logout controller",error.message)
+        res.status(400).json({message:"internal server error"})
     }
 
+}
+
+export const checkAuth = (req,res)=>{
+    try {
+        res.status(200)
+    } catch (error) {
+        
+    }
 }
 
 
