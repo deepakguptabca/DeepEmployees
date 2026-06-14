@@ -1,9 +1,17 @@
+import { useAuthStore } from "../store/useAuthStore"
 
 const Navbar = () => {
+
+  const {authUser,logout} = useAuthStore;
+
   return (
-    <div>
-      hi i am navbar
-    </div>
+    <header>
+    {authUser &&
+<button onClick={logout}>
+  Logout
+</button>
+}
+    </header>
   )
 }
 
