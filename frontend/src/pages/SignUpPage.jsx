@@ -42,8 +42,11 @@ const SignUpPage = () => {
     <div className='min-h-screen flex justify-center items-center'>
 
       <form onSubmit={handleSubmit}>
+
         <div>
           <input type="text" placeholder='Full Name' value={formData.fullName} onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} /></div>
+
+
         <div>
           <input type="email" placeholder='email' value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} /></div>
 
@@ -56,10 +59,16 @@ const SignUpPage = () => {
             S
           </button>
         </div>
+
+
         <div>
           <input type="text" placeholder='role' value={formData.role} onChange={(e) => setFormData({ ...formData, role: e.target.value })} /></div>
+
+
         <div>
           <input type="number" placeholder='salary' value={formData.salary} onChange={(e) => setFormData({ ...formData, salary: e.target.value })} /></div>
+
+          
         <div>
           <button type='submit' disabled={isSigningUp}>
             {
