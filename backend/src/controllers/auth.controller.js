@@ -34,7 +34,7 @@ export const signup = async (req,res) =>{
                 user_id: newUser._id,
                 fullName:newUser.fullName,
                 email:newUser.email,
-                
+                role : newUser.role
             })
 
         }else{
@@ -66,7 +66,9 @@ export const login = async (req,res) =>{
         res.status(200).json({
             _id:user._id,
             fullName:user.fullName,
-            email:user.email
+            email:user.email,
+            role : user.role,
+            salary : user.salary
         })
 
     } catch (error) {

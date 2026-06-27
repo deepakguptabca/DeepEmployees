@@ -16,6 +16,9 @@ const attendanceSchema = new mongoose.Schema(
       enum: ["present", "absent", "leave"],
       required: true,
     },
+    notes:{
+      type : String
+    },
     markedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

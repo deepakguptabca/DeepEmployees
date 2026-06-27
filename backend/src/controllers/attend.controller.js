@@ -1,4 +1,19 @@
 import Attendance from "../models/attendance.model.js";
+import User from "../models/user.model.js";
+
+
+export const employees = async (req,res) =>{
+  try {
+    const employee = await User.find({role : "employee"}).select("-password -__v");
+    res.status(200).json({
+      success : true,
+      count : employee.length,
+      employee
+    })
+  } catch (error) {
+    res.status(404).json({message : "no users are find"})
+  }
+}
 
 export const markAttendance = async (req, res) => {
   const { userId, status } = req.body;
@@ -19,6 +34,7 @@ export const markAttendance = async (req, res) => {
       userId,
       date: date,
       status,
+      notes,
       markedBy: req.user.id,
     });
 
@@ -37,7 +53,7 @@ export const markAttendance = async (req, res) => {
 };
 
 export const updateAttendance = async (req,res) =>{
-  const { userId, status } = req.body;
+  const { userId, status,notes } = req.body;
 
   try {
     const date = new Date(req.body.date || Date.now());
@@ -53,6 +69,7 @@ export const updateAttendance = async (req,res) =>{
 
     existing.status = status;
     existing.markedBy = req.user.id;
+    existing.notes = notes;
 
   
       await existing.save();
