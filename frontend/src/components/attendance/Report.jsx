@@ -1,25 +1,16 @@
 import { useState,useEffect } from "react";
-import { useAuthStore } from "../store/useAuthStore";
-import { useAttendStore } from "../store/useAttendStore";
+import { useAuthStore } from "../../store/useAuthStore";
+import { useAttendStore } from "../../store/useAttendStore";
 
-const Employee = () => {
+const Report = () => {
  const { getReport, getEmployees, currEmployees } = useAttendStore();
  const [report, setReport] = useState(null)
- const [tReport, setTReport] = useState(null)
    const { authUser } = useAuthStore();
    const [formData, setFormData] = useState({
      userId: "",
      startDate: "",
      endDate: ""
    })
- useEffect(() => {
-  const tReport = getReport({
-    userId:authUser._id,
-    startDate: new Date(),
-    endDate : new Date()
-  })
-
- }, [])
  
    useEffect(() => {
      getEmployees();
@@ -29,6 +20,7 @@ const Employee = () => {
    console.log(formData);
  
    const validateAttendance =()=>{
+     if(!formData.userId) return toast.error("Select the user");
      if(!formData.startDate) return toast.error("select the start date");
      if(!formData.endDate) return toast.error("select the end date")
  
@@ -99,4 +91,4 @@ const Employee = () => {
    )
 }
 
-export default Employee
+export default Report

@@ -16,11 +16,12 @@ export const employees = async (req,res) =>{
 }
 
 export const markAttendance = async (req, res) => {
-  const { userId, status } = req.body;
+  const { userId, status,notes,markedBy } = req.body;
 
   try {
-    const date = new Date(req.body.date || Date.now());
+    const date = new Date(req.body.date);
     date.setHours(0, 0, 0, 0);
+
 
     const existing = await Attendance.findOne({
       userId: userId,
@@ -35,7 +36,7 @@ export const markAttendance = async (req, res) => {
       date: date,
       status,
       notes,
-      markedBy: req.user.id,
+      markedBy
     });
 
     if (newAttendance) {
@@ -47,7 +48,7 @@ export const markAttendance = async (req, res) => {
         res.status(400).json({message:"invalid attendance data"})
     }
   } catch (error) {
-    console.log("error in attendance controller" , error.message)
+    console.error(error)
     res.status(400).json({message: "internal server error"})
   }
 };
@@ -84,7 +85,12 @@ export const updateAttendance = async (req,res) =>{
 }
 
 export const deleteAttendance = async (req,res) =>{
-  const {userId,date} = req.body;
+  const {userId} = req.body;
+
+  const date = new Date(req.body.date);
+  date.setHours(0, 0, 0, 0);
+
+  console.log(req.body)
 
   if(!userId || !date) return res.status(400).json({message:"Provide userId and Date"})
 
@@ -110,21 +116,20 @@ export const deleteAttendance = async (req,res) =>{
 }
 
 export const getAttendanceForMonth = async (req,res) =>{
-  const {userId,month,year} = req.body;
+  const {userId,startDate,endDate} = req.body;
 
-  if(!userId || !month || !year) return res.status(400).json({message : "provide userId ,month and year"});
+  if(!userId || !startDate || !endDate) return res.status(400).json({message : "provide userId, start date and end date"});
 
   try {
 
-    const startDate = new Date(year,month-1,1);
+    const startDate = new Date(req.body.startDate)
     startDate.setTime(0,0,0,0);
 
-    const endDate = new Date(year,month,0);
+    const endDate = new Date(req.body.endDate);
     endDate.setHours(23,59,59,999)
 
     const attendance = await Attendance.find({
       userId,
-
       date : {
         $gte : startDate,
         $lte : endDate,

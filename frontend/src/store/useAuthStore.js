@@ -62,5 +62,3 @@ export const useAuthStore = create((set, get) => ({
 
 
 }))
-
-2.12
