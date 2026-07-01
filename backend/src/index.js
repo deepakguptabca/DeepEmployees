@@ -8,6 +8,9 @@ import { connectDB } from "./lib/db.js";
 
 
 const app = express()
+
+app.set("trust proxy",1);
+
 dotenv.config();
 const port = process.env.PORT;
 
