@@ -59,7 +59,7 @@ const SignUpPage = () => {
         <form onSubmit={handleSubmit}>
 
 
-          <div className='flex flex-col '>
+          <div className='flex flex-col'>
             <p className='font-bold'>Full Name</p>
             <div className='flex gap-2 items-center border border-gray-200 p-2 rounded-xl'>
               <IoPeopleOutline />

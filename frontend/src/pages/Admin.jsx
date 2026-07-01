@@ -12,11 +12,11 @@ const Admin = () => {
   return (
     <div>
 
-      <div className='flex flex-row justify-between '>
-        <button onClick={()=>{ setActivateTab("mark")}}>Mark Attendance</button>
-        <button onClick={()=>{setActivateTab("update")}}>Update Attendance</button>
-        <button onClick={()=>{setActivateTab("delete")}}>Delete Attendance</button>
-        <button onClick={()=>{setActivateTab("report")}}>Get Report</button>
+      <div className='sm:flex flex flex-col sm:flex-row shadow-sm justify-between m-1 sm:m-8  text-center text-sm sm:text-[20px]'>
+        <button className={`sec-btn ${activateTab === "mark" ? "shadow-md tri-btn" : ""}`} onClick={()=>{ setActivateTab("mark")}}>Mark Attendance</button>
+        <button className={`sec-btn ${activateTab === "update" ? "shadow-md tri-btn" : ""}`} onClick={()=>{setActivateTab("update")}}>Update Attendance</button>
+        <button className={`sec-btn ${activateTab === "delete" ? "shadow-md tri-btn" : ""}`} onClick={()=>{setActivateTab("delete")}}>Delete Attendance</button>
+        <button className={`sec-btn ${activateTab === "report" ? "shadow-md tri-btn" : ""}`} onClick={()=>{setActivateTab("report")}}>Get Report</button>
       </div>
 
       <div>

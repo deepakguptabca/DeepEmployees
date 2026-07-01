@@ -10,11 +10,14 @@
     cursor:pointer;
 }
 
-@utility sec-btn{
+.sec-btn{
     cursor: pointer;
-    border:1px solid gray;
     padding: 5px 20px;
     border-radius: 10px;
+}
+
+.sec-btn:hover{
+    border: 1px solid gray;
 }
 
 .tri-btn{

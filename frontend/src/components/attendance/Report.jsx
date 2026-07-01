@@ -69,10 +69,13 @@ const Report = () => {
 
        <table>
         <thead>
+          <tr>
+            <th>Employee Name</th>
           <th>Date</th>
           <th>Status</th>
           <th>Notes</th>
           <th>Marked By</th>
+          </tr>
         </thead>
         <tbody>
         {report?.map((item)=>(
