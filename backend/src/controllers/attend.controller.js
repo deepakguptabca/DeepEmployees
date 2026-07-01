@@ -123,7 +123,7 @@ export const getAttendanceForMonth = async (req,res) =>{
   try {
 
     const startDate = new Date(req.body.startDate)
-    startDate.setTime(0,0,0,0);
+    startDate.setHours(0,0,0,0);
 
     const endDate = new Date(req.body.endDate);
     endDate.setHours(23,59,59,999)
